@@ -2,6 +2,12 @@
 1. This demo demonstrates how to deploy the Qwen2-VL-2B/7B model. The Vision + Projector component is exported as an RKNN model using the `rknn-toolkit2`, while the LLM component is exported as an RKLLM model using the `rkllm-toolkit`.
 2. The open-source model used in this demo is available at: [Qwen2-VL-2B](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct), [Qwen2-VL-7B](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct)
 
+
+## 0. Fix Error
+`library "libomp.so" not found: needed by /data/test_QwenVL2.5/lib/librkllmrt.so in namespace (default)`
+The `libomp.so` is in `android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/9.0.9/lib/linux/aarch64/libomp.so`.
+Reference: [Github issue#174](https://github.com/airockchip/rknn-llm/issues/174)
+
 ## 1. Requirements
 ```
 rkllm-toolkit==1.2.x
