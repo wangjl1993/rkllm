@@ -3,7 +3,7 @@
 2. The open-source model used in this demo is available at: [Qwen2-VL-2B](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct), [Qwen2-VL-7B](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct)
 
 
-## 0. Fix Error
+## 0. Fix Error (by jielong.wang@akuvox.com)
 `library "libomp.so" not found: needed by /data/test_QwenVL2.5/lib/librkllmrt.so in namespace (default)`
 The `libomp.so` is in `android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/9.0.9/lib/linux/aarch64/libomp.so`.
 Reference: [Github issue#174](https://github.com/airockchip/rknn-llm/issues/174)
