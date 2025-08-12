@@ -1,0 +1,10 @@
+**.pyc
+**.pyd
+
+**/install/**
+**/build/**
+**.onnx
+**.rknn
+**.rkllm
+**.npy
+**.extra_file
