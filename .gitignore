@@ -9,6 +9,3 @@
 **.npy
 **.extra_file
 
-examples/MiniCPM-V2.6/qwen_w4a16.rkllm
-examples/MiniCPM-V2.6/vision_transformer_rk3576_w4a16.rknn
-examples/MiniCPM-V2.6/vision_transformer.onnx
