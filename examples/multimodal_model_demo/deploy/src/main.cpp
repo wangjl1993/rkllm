@@ -90,13 +90,9 @@ cv::Mat expand2square(const cv::Mat& img, const cv::Scalar& background_color) {
 int main(int argc, char** argv)
 {
     if (argc < 7) {
-<<<<<<< HEAD:examples/Qwen2-VL_Demo/deploy/src/main.cpp
-        std::cerr << "Usage: " << argv[0] << " image_path encoder_model_path llm_model_path max_new_tokens max_context_len rknn_core_num\n";
-=======
         std::cerr << "Usage: " << argv[0]
                 << " image_path encoder_model_path llm_model_path max_new_tokens max_context_len rknn_core_num "
                 << "[img_start] [img_end] [img_content]\n";
->>>>>>> upstream/main:examples/multimodal_model_demo/deploy/src/main.cpp
         return -1;
     }
 
