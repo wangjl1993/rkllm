@@ -2,7 +2,7 @@ set -e
 rm -rf build
 mkdir build && cd build
 
-ANDROID_NDK_PATH=~/opts/android-ndk-r21e
+ANDROID_NDK_PATH=/home/akuvox2025/HDD16T/jielong.wang/compile_tools/android-ndk-r21e
 cmake .. -DCMAKE_ANDROID_NDK=${ANDROID_NDK_PATH} \
         -DCMAKE_SYSTEM_NAME=Android \
         -DCMAKE_SYSTEM_VERSION=23 \

@@ -173,11 +173,22 @@ int main(int argc, char** argv)
     size_t n_image_tokens = rknn_app_ctx.model_image_token;
     size_t image_embed_len = rknn_app_ctx.model_embed_size;
     int rkllm_image_embed_len = n_image_tokens * image_embed_len;
+    std::cout << "image_width: " << image_width
+              << ", image_height: " << image_height
+              << ", n_image_tokens: " << n_image_tokens
+              << ", image_embed_len: " << image_embed_len
+              << ", rkllm_image_embed_len: " << rkllm_image_embed_len
+              << std::endl;
+
     float img_vec[rkllm_image_embed_len];
+    t_start_us = std::chrono::high_resolution_clock::now();
     ret = run_imgenc(&rknn_app_ctx, resized_img.data, img_vec);
     if (ret != 0) {
         printf("run_imgenc fail! ret=%d\n", ret);
     }
+    t_load_end_us = std::chrono::high_resolution_clock::now();
+    load_time = std::chrono::duration_cast<std::chrono::microseconds>(t_load_end_us - t_start_us);
+    printf("%s: Image encoded in %8.2f ms\n", __func__, load_time.count() / 1000.0);
     
     RKLLMInput rkllm_input;
     memset(&rkllm_input, 0, sizeof(RKLLMInput));
@@ -187,7 +198,7 @@ int main(int argc, char** argv)
 
     rkllm_infer_params.mode = RKLLM_INFER_GENERATE;
     rkllm_infer_params.keep_history = 0;
-    // rkllm_set_chat_template(llmHandle, "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n", "<|im_start|>user\n", "<|im_end|>\n<|im_start|>assistant\n");
+    rkllm_set_chat_template(llmHandle, "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n", "<|im_start|>user\n", "<|im_end|>\n<|im_start|>assistant\n");
 
     vector<string> pre_input;
     pre_input.push_back("<image>What is in the image?");
@@ -243,7 +254,11 @@ int main(int argc, char** argv)
             rkllm_input.multimodal_input.image_width = image_width;
         }
         printf("robot: ");
+        t_start_us = std::chrono::high_resolution_clock::now();
         rkllm_run(llmHandle, &rkllm_input, &rkllm_infer_params, NULL);
+        t_load_end_us = std::chrono::high_resolution_clock::now();
+        load_time = std::chrono::duration_cast<std::chrono::microseconds>(t_load_end_us - t_start_us);
+        printf("%s: llm decoded in %8.2f ms\n", __func__, load_time.count() / 1000.0);
     }
 
     ret = release_imgenc(&rknn_app_ctx);
