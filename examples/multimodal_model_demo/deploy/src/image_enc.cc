@@ -77,8 +77,8 @@ int init_imgenc(const char* model_path, rknn_app_context_t* app_ctx, const int c
         dump_tensor_attr(&(output_attrs[i]));
     }
     // Set to context
-    app_ctx->model_image_token = output_attrs[0].dims[1];
-    app_ctx->model_embed_size = output_attrs[0].dims[2];
+    app_ctx->model_image_token = output_attrs[0].dims[0];
+    app_ctx->model_embed_size = output_attrs[0].dims[1];
     app_ctx->rknn_ctx = ctx;
     app_ctx->io_num = io_num;
     app_ctx->input_attrs = (rknn_tensor_attr*)malloc(io_num.n_input * sizeof(rknn_tensor_attr));
