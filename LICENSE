@@ -34,12 +34,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 The following Open Source Software have been modified by Rockchip Electronics Co., Ltd. 
 ----------------------------------------------------------------------------------------
 1. ggml  master
-Copyright (c) 2023-2024 The ggml authors
+Copyright (c) 2023-2025 The ggml authors
 All rights reserved.
 Licensed under the terms of the MIT License
 
 2. llama.cpp  master
-Copyright (c) 2023-2024 The ggml authors
+Copyright (c) 2023-2025 The ggml authors
 All rights reserved.
 Licensed under the terms of the MIT License 
 

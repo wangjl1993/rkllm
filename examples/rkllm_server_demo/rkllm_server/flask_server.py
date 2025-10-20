@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 # Set the dynamic library path
 rkllm_lib = ctypes.CDLL('lib/librkllmrt.so')
-
 # Define the structures from the library
 RKLLM_Handle_t = ctypes.c_void_p
 userdata = ctypes.c_void_p(None)
@@ -202,7 +201,7 @@ callback = callback_type(callback_impl)
 
 # Define the RKLLM class, which includes initialization, inference, and release operations for the RKLLM model in the dynamic library
 class RKLLM(object):
-    def __init__(self, model_path, lora_model_path = None, prompt_cache_path = None):
+    def __init__(self, model_path, lora_model_path = None, prompt_cache_path = None, platform = "rk3588"):
         rkllm_param = RKLLMParam()
         rkllm_param.model_path = bytes(model_path, 'utf-8')
 
@@ -232,14 +231,22 @@ class RKLLM(object):
         rkllm_param.extend_param.n_batch = 1
         rkllm_param.extend_param.use_cross_attn = 0
         rkllm_param.extend_param.enabled_cpus_num = 4
-        rkllm_param.extend_param.enabled_cpus_mask = (1 << 4)|(1 << 5)|(1 << 6)|(1 << 7)
+        if platform.lower() in ["rk3576", "rk3588"]:
+            rkllm_param.extend_param.enabled_cpus_mask = (1 << 4)|(1 << 5)|(1 << 6)|(1 << 7)
+        else:
+            rkllm_param.extend_param.enabled_cpus_mask = (1 << 0)|(1 << 1)|(1 << 2)|(1 << 3)
 
         self.handle = RKLLM_Handle_t()
 
         self.rkllm_init = rkllm_lib.rkllm_init
         self.rkllm_init.argtypes = [ctypes.POINTER(RKLLM_Handle_t), ctypes.POINTER(RKLLMParam), callback_type]
         self.rkllm_init.restype = ctypes.c_int
-        self.rkllm_init(ctypes.byref(self.handle), ctypes.byref(rkllm_param), callback)
+        ret = self.rkllm_init(ctypes.byref(self.handle), ctypes.byref(rkllm_param), callback)
+        if (ret != 0):
+            print("\nrkllm init failed\n")
+            exit(0)
+        else:
+            print("\nrkllm init success!\n")
 
         self.rkllm_run = rkllm_lib.rkllm_run
         self.rkllm_run.argtypes = [RKLLM_Handle_t, ctypes.POINTER(RKLLMInput), ctypes.POINTER(RKLLMInferParam), ctypes.c_void_p]
@@ -331,8 +338,8 @@ if __name__ == "__main__":
         sys.stdout.flush()
         exit()
 
-    if not (args.target_platform in ["rk3588", "rk3576"]):
-        print("Error: Please specify the correct target platform: rk3588/rk3576.")
+    if not (args.target_platform in ["rk3588", "rk3576", "rv1126b", "rk3562"]):
+        print("Error: Please specify the correct target platform: rk3588/rk3576/rv1126b/rk3562.")
         sys.stdout.flush()
         exit()
 
@@ -359,8 +366,7 @@ if __name__ == "__main__":
     print("=========init....===========")
     sys.stdout.flush()
     model_path = args.rkllm_model_path
-    rkllm_model = RKLLM(model_path, args.lora_model_path, args.prompt_cache_path)
-    print("RKLLM Model has been initialized successfully！")
+    rkllm_model = RKLLM(model_path, args.lora_model_path, args.prompt_cache_path, args.target_platform)
     print("==============================")
     sys.stdout.flush()
 

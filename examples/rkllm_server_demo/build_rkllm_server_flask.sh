@@ -90,7 +90,8 @@ fi
 cp ../../rkllm-runtime/Linux/librkllm_api/aarch64/librkllmrt.so  ./rkllm_server/lib/
 cp ../../scripts/fix_freq_rk3576.sh ./rkllm_server
 cp ../../scripts/fix_freq_rk3588.sh ./rkllm_server
-
+cp ../../scripts/fix_freq_rv1126b.sh ./rkllm_server
+cp ../../scripts/fix_freq_rk3562.sh ./rkllm_server
 adb push ./rkllm_server $WORKING_PATH
 
 #################### Enter the board terminal and start the server service. ####################

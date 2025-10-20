@@ -1,6 +1,10 @@
 #ifndef _RKLLM_H_
 #define _RKLLM_H_
+<<<<<<< HEAD
 #include <stdint.h>
+=======
+#include <cstdint>
+>>>>>>> upstream/main
 
 #ifdef __cplusplus
 extern "C" {

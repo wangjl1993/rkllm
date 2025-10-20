@@ -1,4 +1,17 @@
 # CHANGELOG
+<<<<<<< HEAD
+=======
+## v1.2.2
+
+- Added support for Gemma3n and InternVL3 models
+- Supported for multi-instance inference
+- Supported for LongRoPE
+- Fixed issues with asynchronous inference interfaces
+- Fixed chat template parsing issues
+- Optimized inference performance
+- Optimized  multimodal vision model demo
+
+>>>>>>> upstream/main
 ## v1.2.1
 
 - Added support for RWKV7, Qwen3, and MiniCPM4 models

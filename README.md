@@ -28,7 +28,11 @@
 - [x] [Qwen2/Qwen2.5/Qwen3](https://huggingface.co/Qwen)
 - [x] [Phi2/Phi3](https://huggingface.co/microsoft)
 - [x] [ChatGLM3-6B](https://huggingface.co/THUDM/chatglm3-6b/tree/103caa40027ebfd8450289ca2f278eac4ff26405)
+<<<<<<< HEAD
 - [x] [Gemma2/Gemma3](https://huggingface.co/google)
+=======
+- [x] [Gemma2/Gemma3/Gemma3n](https://huggingface.co/google)
+>>>>>>> upstream/main
 - [x] [InternLM2 models](https://huggingface.co/collections/internlm/internlm2-65b0ce04970888799707893c)
 - [x] [MiniCPM3/MiniCPM4](https://huggingface.co/openbmb)
 - [x] [TeleChat2](https://huggingface.co/Tele-AI)
@@ -36,7 +40,11 @@
 - [x] [MiniCPM-V-2_6](https://huggingface.co/openbmb/MiniCPM-V-2_6)
 - [x] [DeepSeek-R1-Distill](https://huggingface.co/collections/deepseek-ai/deepseek-r1-678e1e131c0169c0bc89728d)
 - [x] [Janus-Pro-1B](https://huggingface.co/deepseek-ai/Janus-Pro-1B)
+<<<<<<< HEAD
 - [x] [InternVL2-1B](https://huggingface.co/OpenGVLab/InternVL2-1B)
+=======
+- [x] [InternVL2-1B/InternVL3-1B](https://huggingface.co/OpenGVLab)
+>>>>>>> upstream/main
 - [x] [SmolVLM](https://huggingface.co/HuggingFaceTB)
 - [x] [RWKV7](https://huggingface.co/fla-hub)
 
@@ -58,10 +66,9 @@
 
 # Examples
 
-1. Multimodel deployment demo:   [Qwen2-VL_Demo](https://github.com/airockchip/rknn-llm/tree/main/examples/Qwen2-VL_Demo)
-2. API usage demo:  [DeepSeek-R1-Distill-Qwen-1.5B_Demo](https://github.com/airockchip/rknn-llm/tree/main/examples/DeepSeek-R1-Distill-Qwen-1.5B_Demo)
+1. Multimodel deployment demo:   [multimodal_model_demo](https://github.com/airockchip/rknn-llm/tree/main/examples/multimodal_model_demo)
+2. API usage demo:  [rkllm_api_demo](https://github.com/airockchip/rknn-llm/tree/main/examples/rkllm_api_demo)
 3. API server demo:  [rkllm_server_demo](https://github.com/airockchip/rknn-llm/tree/main/examples/rkllm_server_demo)
-4. Multimodal_Interactive_Dialogue_Demo  [Multimodal_Interactive_Dialogue_Demo](https://github.com/airockchip/rknn-llm/tree/main/examples/Multimodal_Interactive_Dialogue_Demo)
 
 # Note
 
@@ -80,7 +87,11 @@ export BUILD_CUDA_EXT=0
 ```
 - On some platforms, you may encounter an error indicating that **libomp.so** cannot be found. To resolve this, locate the library in the corresponding cross-compilation toolchain and place it in the board's lib directory, at the same level as librkllmrt.so.
 - RWKV model conversion only supports Python 3.12. Please use `requirements_rwkv7.txt` to set up the pip environment.
+<<<<<<< HEAD
 - Latest version: [ <u>v1.2.1](https://github.com/airockchip/rknn-llm/releases/tag/release-v1.2.1)</u>
+=======
+- Latest version: [ <u>v1.2.2](https://github.com/airockchip/rknn-llm/releases/tag/release-v1.2.2)</u>
+>>>>>>> upstream/main
 
 # RKNN Toolkit2
 
@@ -90,6 +101,7 @@ https://github.com/airockchip/rknn-toolkit2
 
 # CHANGELOG
 
+<<<<<<< HEAD
 ## v1.2.1
 
 - Added support for RWKV7, Qwen3, and MiniCPM4 models
@@ -104,5 +116,16 @@ https://github.com/airockchip/rknn-toolkit2
 - Added return of model inference performance statistics
 - Supported mrope multimodal position encoding
 - A new quantization optimization algorithm has been added to improve quantization accuracy
+=======
+## v1.2.2
+
+- Added support for Gemma3n and InternVL3 models
+- Supported for multi-instance inference
+- Supported for LongRoPE
+- Fixed issues with asynchronous inference interfaces
+- Fixed chat template parsing issues
+- Optimized inference performance
+- Optimized  multimodal vision model demo
+>>>>>>> upstream/main
 
 for older version, please refer [CHANGELOG](CHANGELOG.md)
